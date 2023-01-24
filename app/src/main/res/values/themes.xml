@@ -13,10 +13,18 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="botaoPadrao" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">#9E1717</item>
+        <item name="colorButtonNormal">#670F0F</item>
+        <item name="android:textColor">@color/purple_700</item>
+    </style>
+
     <style name="Theme.AppFilme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="Theme.AppFilme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="Theme.AppFilme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

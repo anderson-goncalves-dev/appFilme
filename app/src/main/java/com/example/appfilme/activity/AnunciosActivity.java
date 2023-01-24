@@ -55,6 +55,9 @@ public class AnunciosActivity extends AppCompatActivity {
                 autenticacao.signOut();
                 invalidateOptionsMenu();
                 break;
+            case R.id.menu_anuncios:
+                startActivity(new Intent(getApplicationContext(),MeusAnunciosActivity.class));
+                break;
 
 
         }
