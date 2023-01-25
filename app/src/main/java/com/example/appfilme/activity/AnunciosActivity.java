@@ -119,6 +119,7 @@ public class AnunciosActivity extends AppCompatActivity {
         });
     }
     public void recuperarPublicacoesPublicas(){
+        //correcao
         LoadingAlert loadingAlert = new LoadingAlert(AnunciosActivity.this);
         loadingAlert.startAlertDialog();
         listaPublicacoes.clear();
