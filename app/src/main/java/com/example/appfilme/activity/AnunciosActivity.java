@@ -1,15 +1,20 @@
 package com.example.appfilme.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.example.appfilme.R;
 import com.example.appfilme.adapter.AdapterAnuncios;
@@ -32,6 +37,7 @@ public class AnunciosActivity extends AppCompatActivity {
     private AdapterAnuncios adapterAnuncios;
     private List<Publicacao> listaPublicacoes = new ArrayList<>();
     private DatabaseReference publicacoesPublicasRef;
+    private String filtroCategoria = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,63 @@ public class AnunciosActivity extends AppCompatActivity {
         recyclerPublicacoesPublicas.setAdapter(adapterAnuncios);
         recuperarPublicacoesPublicas();
         //autenticacao.signOut();
+    }
+    public void filtrarPorCategoria(View view){
+        AlertDialog.Builder dialogoCategoria = new AlertDialog.Builder(this);
+        dialogoCategoria.setTitle("Selecione a categoria desejada");
+        //Configurar spinner
+        View viewSpinner = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+        //Configurar spinner de categorias
+        Spinner spinnerCategoria = viewSpinner.findViewById(R.id.spinnerFiltro);
+        String[] categorias = getResources().getStringArray(R.array.categoria);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, categorias
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategoria.setAdapter(adapter);
+
+        dialogoCategoria.setView(viewSpinner);
+
+        dialogoCategoria.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                filtroCategoria = spinnerCategoria.getSelectedItem().toString();
+                recuperarPublicacoesPorCategoria();
+            }
+        });
+        dialogoCategoria.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        AlertDialog dialog = dialogoCategoria.create();
+        dialog.show();
+    }
+    public void recuperarPublicacoesPorCategoria(){
+        LoadingAlert loadingAlert = new LoadingAlert(AnunciosActivity.this);
+        loadingAlert.startAlertDialog();
+        publicacoesPublicasRef = ConfiguracaoFirebase.getFirebase().child("publicacoes")
+                .child(filtroCategoria);
+        publicacoesPublicasRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               listaPublicacoes.clear();
+                for(DataSnapshot publicacoes: dataSnapshot.getChildren()){
+                    Publicacao publicacao = publicacoes.getValue(Publicacao.class);
+                    listaPublicacoes.add(publicacao);
+
+                }
+                Collections.reverse(listaPublicacoes);
+                adapterAnuncios.notifyDataSetChanged();
+                loadingAlert.closeAlertDialog();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     public void recuperarPublicacoesPublicas(){
         LoadingAlert loadingAlert = new LoadingAlert(AnunciosActivity.this);
