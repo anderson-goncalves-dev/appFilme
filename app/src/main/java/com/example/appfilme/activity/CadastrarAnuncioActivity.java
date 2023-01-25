@@ -93,8 +93,8 @@ public class CadastrarAnuncioActivity<grantResults> extends AppCompatActivity
         return publicacao;
     }
     public void salvarPublicacao(){
-       LoadingAlert loadingAlert = new LoadingAlert(CadastrarAnuncioActivity.this);
-       loadingAlert.startAlertDialog();
+           LoadingAlert loadingAlert = new LoadingAlert(CadastrarAnuncioActivity.this);
+           loadingAlert.startAlertDialog();
         for(int i = 0; i < listaFotosRecuperadas.size(); i++){
             String urlImagem = listaFotosRecuperadas.get(i);
             int tamanhoLista = listaFotosRecuperadas.size();

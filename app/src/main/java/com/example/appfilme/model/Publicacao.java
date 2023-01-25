@@ -30,6 +30,19 @@ public class Publicacao {
         setIdPublicacao(publicacaoRef.push().getKey());
         publicacaoRef.child(getCategoria()).child(getIdPublicacao()).setValue(this);
     }
+    public void remover(){
+        String idUsuario = ConfiguracaoFirebase.getIdUsuario();
+        DatabaseReference publicacaoRef = ConfiguracaoFirebase.getFirebase().child("minhas_publicacoes")
+                .child(idUsuario).child(getIdPublicacao());
+        publicacaoRef.removeValue();
+        removerPublicacaoPublico();
+    }
+    public void removerPublicacaoPublico(){
+
+        DatabaseReference publicacaoRef = ConfiguracaoFirebase.getFirebase().child("publicacoes")
+                .child(getCategoria()).child(getIdPublicacao());
+        publicacaoRef.removeValue();
+    }
 
     public String getIdPublicacao() {
         return idPublicacao;

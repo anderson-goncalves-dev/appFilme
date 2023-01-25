@@ -3,6 +3,7 @@ package com.example.appfilme.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +17,7 @@ import com.example.appfilme.R;
 import com.example.appfilme.adapter.AdapterAnuncios;
 import com.example.appfilme.databinding.ActivityMeusAnunciosBinding;
 import com.example.appfilme.helper.ConfiguracaoFirebase;
+import com.example.appfilme.helper.RecyclerItemClickListener;
 import com.example.appfilme.model.Publicacao;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -66,8 +68,34 @@ public class MeusAnunciosActivity extends AppCompatActivity {
         recyclerAnuncios.setAdapter(adapterAnuncios);
 
         recuperarPublicacoes();
+        recyclerAnuncios.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        this,
+                        recyclerAnuncios,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                Publicacao publicacaoSelecionado = publicacoes.get(position);
+                                publicacaoSelecionado.remover();
+                                adapterAnuncios.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        }
+                )
+        );
     }
     private void recuperarPublicacoes(){
+        LoadingAlert loadingAlert = new LoadingAlert(MeusAnunciosActivity.this);
+        loadingAlert.startAlertDialog();
         publicacoesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -77,6 +105,7 @@ public class MeusAnunciosActivity extends AppCompatActivity {
                 }
                 Collections.reverse(publicacoes);
                 adapterAnuncios.notifyDataSetChanged();
+                loadingAlert.closeAlertDialog();
             }
 
             @Override
