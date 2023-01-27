@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:layout_margin="8dp">
 
     <LinearLayout
@@ -10,6 +11,7 @@
         android:layout_height="140dp"
         android:layout_margin="8dp"
         android:orientation="horizontal"
+        android:background="#B4C0CA"
         android:padding="8dp">
 
         <ImageView
@@ -29,9 +31,10 @@
                 android:id="@+id/textTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:text="Jason Sexta feira 13"
-                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textColor="#232323"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>

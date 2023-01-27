@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     android:layout_margin="8dp"
     android:orientation="vertical"
+    android:background="#D4DADF"
     tools:context=".activity.AnunciosActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="horizontal">
 
         <Button
@@ -20,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="filtrarPorCategoria"
-            android:text="Categoria"
-            android:textColor="@color/design_default_color_error" />
+            android:text="Gênero"
+            android:textColor="#0830C1" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

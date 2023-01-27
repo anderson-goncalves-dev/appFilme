@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="#D4DADF"
     app:layout_marginBaseline="16dp"
     tools:context=".activity.CadastrarAnuncioActivity">
 
@@ -56,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_edit_text"
+        android:background="#E9ECED"
         android:ems="10"
         android:hint="Título"
         android:inputType="textPersonName"
@@ -67,7 +68,7 @@
         android:layout_width="380dp"
         android:layout_height="162dp"
         android:height="120dp"
-        android:background="@drawable/bg_edit_text"
+        android:background="#E9ECED"
         android:ems="10"
         android:hint="Avaliação"
         android:inputType="textPersonName"
