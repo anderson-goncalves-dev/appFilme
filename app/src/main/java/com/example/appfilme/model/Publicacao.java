@@ -84,4 +84,5 @@ public class Publicacao implements Serializable {
     public void setFotos(List<String> fotos) {
         this.fotos = fotos;
     }
+    //git
 }

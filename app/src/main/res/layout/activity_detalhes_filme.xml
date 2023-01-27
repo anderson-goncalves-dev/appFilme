@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress AndroidUnresolvableTag -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9ECED"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".activity.DetalhesFilmeActivity"
+    tools:ignore="MissingClass">
+
+    <TextView
+        android:id="@+id/textTituloDetalhe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Título"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+    <View
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Gênero:"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textCategoriaDetalhe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:textSize="18sp"
+        android:paddingLeft="8dp"
+        android:text="Terror" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:padding="8dp" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Avaliação:"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textAvaliacaoDetalhe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="18sp"
+        android:text="Avaliação" />
+
+
+</LinearLayout>
