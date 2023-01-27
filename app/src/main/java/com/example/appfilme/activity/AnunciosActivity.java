@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -19,6 +20,7 @@ import android.widget.Spinner;
 import com.example.appfilme.R;
 import com.example.appfilme.adapter.AdapterAnuncios;
 import com.example.appfilme.helper.ConfiguracaoFirebase;
+import com.example.appfilme.helper.RecyclerItemClickListener;
 import com.example.appfilme.model.Publicacao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +47,34 @@ public class AnunciosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_anuncios);
 
         inicializarComponentes();
+
+        //Aplicar evento de click
+        recyclerPublicacoesPublicas.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        this,
+                        recyclerPublicacoesPublicas,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Publicacao publicacaoSelecionada = listaPublicacoes.get(position);
+                                Intent i = new Intent(AnunciosActivity.this,DetalhesFilmeActivity.class);
+                                i.putExtra("publicacaoSelecionada",publicacaoSelecionada);
+                                startActivity(i);
+
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        }
+                )
+        );
 
 
 

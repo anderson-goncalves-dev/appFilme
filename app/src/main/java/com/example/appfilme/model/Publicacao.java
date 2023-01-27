@@ -3,9 +3,10 @@ package com.example.appfilme.model;
 import com.example.appfilme.helper.ConfiguracaoFirebase;
 import com.google.firebase.database.DatabaseReference;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Publicacao {
+public class Publicacao implements Serializable {
     private String idPublicacao;
     private String categoria;
     private  String titulo;
@@ -19,7 +20,7 @@ public class Publicacao {
     public void salvar(){
         String idUsuario = ConfiguracaoFirebase.getIdUsuario();
         DatabaseReference publicacaoRef = ConfiguracaoFirebase.getFirebase().child("minhas_publicacoes");
-        setIdPublicacao(publicacaoRef.push().getKey());
+
         publicacaoRef.child(idUsuario).child(getIdPublicacao()).setValue(this);
 
         salvarPublicacaoPublico();
@@ -27,7 +28,7 @@ public class Publicacao {
     public void salvarPublicacaoPublico(){
 
         DatabaseReference publicacaoRef = ConfiguracaoFirebase.getFirebase().child("publicacoes");
-        setIdPublicacao(publicacaoRef.push().getKey());
+
         publicacaoRef.child(getCategoria()).child(getIdPublicacao()).setValue(this);
     }
     public void remover(){

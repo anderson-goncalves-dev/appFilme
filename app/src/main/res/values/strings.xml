@@ -2,7 +2,6 @@
     <string name="app_name">Pipocando</string>
 
 
-
     <string name="title_activity_minhas_publicacoes">Minhas Publicações</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -14,6 +13,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_meus_anuncios">Minhas Publicações</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="pipocando">Pipocando</string>
     <string-array name="categoria">
         <item>Ação</item>
         <item>Aventura</item>

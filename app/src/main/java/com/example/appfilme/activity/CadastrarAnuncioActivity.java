@@ -101,19 +101,7 @@ public class CadastrarAnuncioActivity<grantResults> extends AppCompatActivity
             salvarFotoStorage(urlImagem, tamanhoLista, i);
         }
     }
-   /* private void salvarFotoStorage(String urlString, final int totalFotos, int contador){
-        final StorageReference imagemAnuncio = storage.child("imagens")
-                .child("anuncios")
-                .child(publicacao.getIdPublicacao())
-                .child("imagem"+contador);
-
-        UploadTask uploadTask = imagemAnuncio.putFile(Uri.parse(urlString));
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Uri firebaseUrl = taskSnapshot.getDownloadUrl();
-            }
-        })*/private void salvarFotoStorage(String urlString, final int totalFotos, int contador) {
+   private void salvarFotoStorage(String urlString, final int totalFotos, int contador) {
 
        //Criar nó no Storage
        final StorageReference imagemAnuncio = storage.child("imagens")
@@ -158,63 +146,7 @@ public class CadastrarAnuncioActivity<grantResults> extends AppCompatActivity
             }
         });
     }
-  /*private void salvarFotoStorage(String urlString, int totalFotos, int contador){
 
-      StorageReference imagemAnuncio = storage.child("imagens").child("anuncios").child(publicacao.getIdPublicacao()).child("imagem"+contador);
-        UploadTask uploadTask = imagemAnuncio.putFile(Uri.parse(urlString));
-        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl();
-
-                String urlConvertida = url.toString();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                exibirMensagemErro("Falha ao fazer upload");
-                Log.i("INFO","Falha ao fazer upload: "+ e.getMessage());
-
-            }
-        });
-    }
-    /*private void salvarFotoStorage(String urlString, final int totalFotos, int contador) {
-
-        //Criar referencia no Storage
-        final StorageReference imagemPublicacao = storage.child("imagens")
-                .child("publicacao")
-                .child(publicacao.getIdPublicacao())
-                .child("imagem"+contador);
-
-        //Fazer upload do arquivo
-        UploadTask uploadTask = imagemPublicacao.putFile(Uri.parse(urlString));
-        uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                if (!task.isSuccessful()) {
-                    throw task.getException();
-                }
-
-                return imagemPublicacao.getDownloadUrl();
-            }
-        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                if (task.isSuccessful()) {
-                    Uri url = task.getResult();
-                    listaUrlFotos.add(url.toString());
-
-                    if(totalFotos == listaUrlFotos.size()) {
-                        publicacao.setFotos(listaUrlFotos);
-                        publicacao.salvar();
-                    }
-
-                } else {
-                    exibirMensagemErro("Falha ao enviar a foto!");
-                }
-            }
-        });
-    }*/
 
     public void validarDadosPublicacao(View view){
        publicacao = configurarPublicacao();
