@@ -9,13 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appfilme.R;
-import com.example.appfilme.adapter.AdapterAnuncios;
-import com.example.appfilme.databinding.ActivityMeusAnunciosBinding;
+import com.example.appfilme.adapter.AdapterPublicacoes;
 import com.example.appfilme.helper.ConfiguracaoFirebase;
 import com.example.appfilme.helper.RecyclerItemClickListener;
 import com.example.appfilme.model.Publicacao;
@@ -26,14 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class MeusAnunciosActivity extends AppCompatActivity {
-    private RecyclerView recyclerAnuncios;
+public class MinhasPublicacoesActivity extends AppCompatActivity {
+    private RecyclerView recyclerPublicacoes;
     private List<Publicacao> publicacoes = new ArrayList<>();
-    private AdapterAnuncios adapterAnuncios;
+    private AdapterPublicacoes adapterPublicacoes;
     private DatabaseReference publicacoesRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,24 +51,24 @@ public class MeusAnunciosActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), CadastrarAnuncioActivity.class));
+                startActivity(new Intent(getApplicationContext(), CadastrarPublicacaoActivity.class));
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Configurar RecyclerView
-        recyclerAnuncios.setLayoutManager(new LinearLayoutManager(this));
-        recyclerAnuncios.setHasFixedSize(true);
+        recyclerPublicacoes.setLayoutManager(new LinearLayoutManager(this));
+        recyclerPublicacoes.setHasFixedSize(true);
 
-        adapterAnuncios = new AdapterAnuncios(publicacoes, this);
+        adapterPublicacoes = new AdapterPublicacoes(publicacoes, this);
 
-        recyclerAnuncios.setAdapter(adapterAnuncios);
+        recyclerPublicacoes.setAdapter(adapterPublicacoes);
 
         recuperarPublicacoes();
-        recyclerAnuncios.addOnItemTouchListener(
+        recyclerPublicacoes.addOnItemTouchListener(
                 new RecyclerItemClickListener(
                         this,
-                        recyclerAnuncios,
+                        recyclerPublicacoes,
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
@@ -82,7 +79,7 @@ public class MeusAnunciosActivity extends AppCompatActivity {
                             public void onLongItemClick(View view, int position) {
                                 Publicacao publicacaoSelecionado = publicacoes.get(position);
                                 publicacaoSelecionado.remover();
-                                adapterAnuncios.notifyDataSetChanged();
+                                adapterPublicacoes.notifyDataSetChanged();
                             }
 
                             @Override
@@ -94,7 +91,7 @@ public class MeusAnunciosActivity extends AppCompatActivity {
         );
     }
     private void recuperarPublicacoes(){
-        LoadingAlert loadingAlert = new LoadingAlert(MeusAnunciosActivity.this);
+        LoadingAlert loadingAlert = new LoadingAlert(MinhasPublicacoesActivity.this);
         loadingAlert.startAlertDialog();
         publicacoesRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,7 +101,7 @@ public class MeusAnunciosActivity extends AppCompatActivity {
                     publicacoes.add(ds.getValue(Publicacao.class));
                 }
                 Collections.reverse(publicacoes);
-                adapterAnuncios.notifyDataSetChanged();
+                adapterPublicacoes.notifyDataSetChanged();
                 loadingAlert.closeAlertDialog();
             }
 
@@ -115,7 +112,7 @@ public class MeusAnunciosActivity extends AppCompatActivity {
         });
     }
     public void inicializarComponentes(){
-        recyclerAnuncios = findViewById(R.id.recyclerAnuncios);
+        recyclerPublicacoes = findViewById(R.id.recyclerAnuncios);
     }
 
 

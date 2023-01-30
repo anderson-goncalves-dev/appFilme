@@ -1,7 +1,6 @@
 package com.example.appfilme.activity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 //import androidx.appcompat.app.AlertDialog;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
 
@@ -29,19 +27,15 @@ import com.example.appfilme.R;
 import com.example.appfilme.helper.ConfiguracaoFirebase;
 import com.example.appfilme.helper.Permissoes;
 import com.example.appfilme.model.Publicacao;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CadastrarAnuncioActivity<grantResults> extends AppCompatActivity
+public class CadastrarPublicacaoActivity<grantResults> extends AppCompatActivity
             implements View.OnClickListener{
     private EditText  campoTitulo, campoDescricao;
     private Spinner campoCategoria;
@@ -93,7 +87,7 @@ public class CadastrarAnuncioActivity<grantResults> extends AppCompatActivity
         return publicacao;
     }
     public void salvarPublicacao(){
-           LoadingAlert loadingAlert = new LoadingAlert(CadastrarAnuncioActivity.this);
+           LoadingAlert loadingAlert = new LoadingAlert(CadastrarPublicacaoActivity.this);
            loadingAlert.startAlertDialog();
         for(int i = 0; i < listaFotosRecuperadas.size(); i++){
             String urlImagem = listaFotosRecuperadas.get(i);
@@ -123,7 +117,7 @@ public class CadastrarAnuncioActivity<grantResults> extends AppCompatActivity
                    @Override
                    public void onSuccess(Uri uri) {
                        String urlConvertida = uri.toString();      //Esta url funciona!!!
-                       LoadingAlert loadingAlert = new LoadingAlert(CadastrarAnuncioActivity.this);
+                       LoadingAlert loadingAlert = new LoadingAlert(CadastrarPublicacaoActivity.this);
                        listaUrlFotos.add( urlConvertida );
 
                        //Testa finalização de upload das imagens

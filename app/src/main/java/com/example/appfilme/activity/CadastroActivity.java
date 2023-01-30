@@ -83,7 +83,7 @@ public class CadastroActivity extends AppCompatActivity {
                                         if(task.isSuccessful()){
                                             Toast.makeText(CadastroActivity.this, "Logado com sucesso",
                                                     Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(getApplicationContext(), AnunciosActivity.class));
+                                            startActivity(new Intent(getApplicationContext(), PublicacoesActivity.class));
                                         }else{
                                             Toast.makeText(CadastroActivity.this, "Erro ao fazer o login: "
                                                     + task.getException(), Toast.LENGTH_SHORT).show();

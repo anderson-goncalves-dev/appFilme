@@ -16,12 +16,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AdapterAnuncios extends RecyclerView.Adapter<AdapterAnuncios.MyViewHolder> {
+public class AdapterPublicacoes extends RecyclerView.Adapter<AdapterPublicacoes.MyViewHolder> {
 
     private List<Publicacao> publicacoes;
     private Context context;
 
-    public AdapterAnuncios(List<Publicacao> publicacoes, Context context) {
+    public AdapterPublicacoes(List<Publicacao> publicacoes, Context context) {
         this.publicacoes = publicacoes;
         this.context = context;
     }

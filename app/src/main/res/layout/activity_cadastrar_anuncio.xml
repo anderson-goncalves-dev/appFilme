@@ -8,7 +8,7 @@
     android:padding="16dp"
     android:background="#D4DADF"
     app:layout_marginBaseline="16dp"
-    tools:context=".activity.CadastrarAnuncioActivity">
+    tools:context=".activity.CadastrarPublicacaoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -18,7 +18,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.appfilme.R;
-import com.example.appfilme.adapter.AdapterAnuncios;
+import com.example.appfilme.adapter.AdapterPublicacoes;
 import com.example.appfilme.helper.ConfiguracaoFirebase;
 import com.example.appfilme.helper.RecyclerItemClickListener;
 import com.example.appfilme.model.Publicacao;
@@ -32,11 +32,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AnunciosActivity extends AppCompatActivity {
+public class PublicacoesActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private RecyclerView recyclerPublicacoesPublicas;
     private Button buttonCategoria;
-    private AdapterAnuncios adapterAnuncios;
+    private AdapterPublicacoes adapterAnuncios;
     private List<Publicacao> listaPublicacoes = new ArrayList<>();
     private DatabaseReference publicacoesPublicasRef;
     private String filtroCategoria = "";
@@ -57,7 +57,7 @@ public class AnunciosActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
                                 Publicacao publicacaoSelecionada = listaPublicacoes.get(position);
-                                Intent i = new Intent(AnunciosActivity.this,DetalhesFilmeActivity.class);
+                                Intent i = new Intent(PublicacoesActivity.this,DetalhesFilmeActivity.class);
                                 i.putExtra("publicacaoSelecionada",publicacaoSelecionada);
                                 startActivity(i);
 
@@ -85,7 +85,7 @@ public class AnunciosActivity extends AppCompatActivity {
         recyclerPublicacoesPublicas.setLayoutManager(new LinearLayoutManager(this));
         recyclerPublicacoesPublicas.setHasFixedSize(true);
 
-        adapterAnuncios = new AdapterAnuncios(listaPublicacoes, this);
+        adapterAnuncios = new AdapterPublicacoes(listaPublicacoes, this);
 
         recyclerPublicacoesPublicas.setAdapter(adapterAnuncios);
         recuperarPublicacoesPublicas();
@@ -124,7 +124,7 @@ public class AnunciosActivity extends AppCompatActivity {
         dialog.show();
     }
     public void recuperarPublicacoesPorCategoria(){
-        LoadingAlert loadingAlert = new LoadingAlert(AnunciosActivity.this);
+        LoadingAlert loadingAlert = new LoadingAlert(PublicacoesActivity.this);
         loadingAlert.startAlertDialog();
         publicacoesPublicasRef = ConfiguracaoFirebase.getFirebase().child("publicacoes")
                 .child(filtroCategoria);
@@ -150,7 +150,7 @@ public class AnunciosActivity extends AppCompatActivity {
     }
     public void recuperarPublicacoesPublicas(){
         //correcao
-        LoadingAlert loadingAlert = new LoadingAlert(AnunciosActivity.this);
+        LoadingAlert loadingAlert = new LoadingAlert(PublicacoesActivity.this);
         loadingAlert.startAlertDialog();
         listaPublicacoes.clear();
         publicacoesPublicasRef.addValueEventListener(new ValueEventListener() {
@@ -205,7 +205,7 @@ public class AnunciosActivity extends AppCompatActivity {
                 invalidateOptionsMenu();
                 break;
             case R.id.menu_anuncios:
-                startActivity(new Intent(getApplicationContext(),MeusAnunciosActivity.class));
+                startActivity(new Intent(getApplicationContext(), MinhasPublicacoesActivity.class));
                 break;
 
 

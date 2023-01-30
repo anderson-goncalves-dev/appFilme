@@ -7,7 +7,7 @@
     android:layout_margin="8dp"
     android:orientation="vertical"
     android:background="#D4DADF"
-    tools:context=".activity.AnunciosActivity">
+    tools:context=".activity.PublicacoesActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
