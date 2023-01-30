@@ -54,7 +54,7 @@ public class CadastrarPublicacaoActivity<grantResults> extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar_anuncio);
+        setContentView(R.layout.activity_cadastrar_publicacao);
         storage = ConfiguracaoFirebase.getFirebaseStorage();
         Permissoes.validarPermissoes(permissoes,this,1);
 

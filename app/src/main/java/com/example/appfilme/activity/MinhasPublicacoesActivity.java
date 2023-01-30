@@ -35,7 +35,7 @@ public class MinhasPublicacoesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meus_anuncios);
+        setContentView(R.layout.activity_minhas_publicacoes);
 
         //Configurações iniciais
         publicacoesRef = ConfiguracaoFirebase.getFirebase().child("minhas_publicacoes")
