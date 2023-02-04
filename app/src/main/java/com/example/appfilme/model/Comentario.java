@@ -1,0 +1,66 @@
+package com.example.appfilme.model;
+
+import com.example.appfilme.helper.ConfiguracaoFirebase;
+import com.google.firebase.database.DatabaseReference;
+
+public class Comentario {
+    private String idComentario;
+    private String idPostagem;
+    private String idUsuario;
+    private String nomeUsuario;
+    private String comentario;
+
+    public Comentario() {
+    }
+    public boolean salvar(){
+        DatabaseReference comentariosRef = ConfiguracaoFirebase.getFirebase()
+                .child("Comentarios")
+                .child(getIdPostagem());
+
+        String chaveComentario =  comentariosRef.push().getKey();
+        setIdComentario(chaveComentario);
+        comentariosRef.child(getIdComentario()).setValue(this);
+        return true;
+
+    }
+
+    public String getIdComentario() {
+        return idComentario;
+    }
+
+    public void setIdComentario(String idComentario) {
+        this.idComentario = idComentario;
+    }
+
+    public String getIdPostagem() {
+        return idPostagem;
+    }
+
+    public void setIdPostagem(String idPostagem) {
+        this.idPostagem = idPostagem;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+}
