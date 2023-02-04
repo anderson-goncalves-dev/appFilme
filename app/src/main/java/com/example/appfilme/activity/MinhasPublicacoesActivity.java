@@ -54,7 +54,7 @@ public class MinhasPublicacoesActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), CadastrarPublicacaoActivity.class));
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //Configurar RecyclerView
         recyclerPublicacoes.setLayoutManager(new LinearLayoutManager(this));

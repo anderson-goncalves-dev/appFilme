@@ -3,7 +3,9 @@ package com.example.appfilme.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +42,11 @@ public class DetalhesFilmeActivity extends AppCompatActivity {
 
 
         }
+    }
+    public void abrirComentarios (View view){
+        Intent i = new Intent(DetalhesFilmeActivity.this, ComentariosActivity.class);
+        i.putExtra("idPostagem",publicacaoSelecionada.getIdPublicacao());
+        startActivity(i);
     }
     private void inicializarComponentes(){
 

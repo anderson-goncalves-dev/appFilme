@@ -63,6 +63,21 @@
         android:padding="8dp"
         android:textSize="18sp"
         android:text="Avaliação" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/comentarios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="abrirComentarios"
+        android:padding="8dp"
+        android:text="Comentários..."
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

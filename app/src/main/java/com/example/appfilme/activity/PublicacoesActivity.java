@@ -198,12 +198,13 @@ public class PublicacoesActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.menu_cadastrar:
-                startActivity(new Intent(getApplicationContext(),CadastroActivity.class));
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                 break;
             case R.id.menu_sair:
                 autenticacao.signOut();
                 invalidateOptionsMenu();
                 break;
+
             case R.id.menu_anuncios:
                 startActivity(new Intent(getApplicationContext(), MinhasPublicacoesActivity.class));
                 break;
